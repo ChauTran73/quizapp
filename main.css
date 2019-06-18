@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+  }
+  body, html{
+    font-family: 'Noto Sans HK', sans-serif;
+    height: 100%;
+  }
+  .container{
+    display: block;
+    position: relative;
+    margin: 40px auto;
+    height: auto;
+    width: 500px;
+    padding: 20px;
+  }
+  h2 {
+      color: #C97B33;
+  }
+  h3 {
+    color: red;
+  }
+  main{
+    padding: 40px;
+    border: 6px #F4D03F solid;
+    border-radius: 5px;
+  }
+ 
+  fieldset {
+    width: 100%;
+    border: none;
+  }
+  input[type="radio"] span{
+    line-height: 8em;
+  }
+  label{
+    display: block;
+    margin-bottom: 30px;
+  }
+  
+  button{
+    background: #DCEEDE;
+    width: 160px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border:0;
+    transition: 0.2s ease-in all;
+}
+input,button:hover{
+  cursor: pointer;
+}
+.green{
+  color: green;
+}
+
+
+
