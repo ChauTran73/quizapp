@@ -3,6 +3,21 @@ let currentQuestionNum = 0;
 let currentScore = 0;
 let lastAnswerCorrect = null;
 
+function generateRandomImage(){
+  //generate random tiger pics here
+  let srcIndex= Math.floor(Math.random()*6);
+  let imgArray = [
+    './pics/nick-karvounis--KNNQqX9rqY-unsplash.jpg',
+    './pics/rick-l-037fCBgZB10-unsplash.jpg',
+    './pics/smit-patel-dGMcpbzcq1I-unsplash.jpg',
+    './pics/frida-bredesen-76dgUcMupv4-unsplash.jpg',
+    './pics/frida-bredesen-IDO_a-dxrCY-unsplash.jpg',
+    './pics/paul-m-paL4zSmXTWc-unsplash.jpg'
+  ]
+  let imgSrc =  imgArray[srcIndex]
+  console.log(imgSrc)
+  return imgSrc;
+}
 function generateQuestionCard(card){
    return `
    <main role="main">
@@ -10,7 +25,7 @@ function generateQuestionCard(card){
       <fieldset>
           <span>Question number ${currentQuestionNum+1} out of ${QUIZ.length} questions</span>
             <h1>${card.question}</h1>
-          
+          <span class='tiger__image'><img src=${generateRandomImage()} alt='tiger pic' width='auto' height='250'/></span>
           <label>
             <input type="radio" value="${card.answers[0]}" name="selector" required>
             <span>${card.answers[0]}</span>
@@ -34,6 +49,7 @@ function generateQuestionCard(card){
    <button id="submitAnswer" type="submit" value="Submit">Submit</button>
        </fieldset>
     </form> 
+    <div class="selectError"></div>
   </main>
    `
 }
@@ -41,7 +57,9 @@ function generateQuestionCard(card){
 function generateFeedback(){
   return`
     <main role="main">
-      <h3 id="lastAnswer">${lastAnswerCorrect}</h3>
+      <h3 id="lastAnswerCorrect">
+        ${lastAnswerCorrect}
+      </h3>
       <h4>${QUIZ[currentQuestionNum].correctAnswer}</h4>
       <p>${QUIZ[currentQuestionNum].feedback}</p>
       <button id="next-button">Next</button>
@@ -90,19 +108,34 @@ function handleQuiz(){
 function handleSubmitAnswer(){
   $(".container").on("click","#submitAnswer", function(e){
     e.preventDefault();
-    var radioValue = $("input[name='selector']:checked").val();
-    if(radioValue == QUIZ[currentQuestionNum].correctAnswer){
-      lastAnswerCorrect = "Correct";
-      generateFeedback();
-     
-      currentScore++;
-      renderFeedback();
-    }else{
-      lastAnswerCorrect = "Incorrect";
-      generateFeedback();
-      renderFeedback();
-    }
-  })
+    if($("input[name='selector']").is(':checked')){
+      var radioValue = $("input[name='selector']:checked").val();
+      
+      if(radioValue == QUIZ[currentQuestionNum].correctAnswer){
+        lastAnswerCorrect = "Correct!";
+        generateFeedback();
+        currentScore++;
+        renderFeedback();
+        $('h3').addClass('green')
+      }else{
+        lastAnswerCorrect = "Incorrect :(";
+        generateFeedback();
+        renderFeedback();
+        $('h3').addClass('red')
+      }
+  }
+  else{
+    $('.selectError').html('Please select a choice')
+    return false;
+  }
+})
+    
+}
+function handleClickAnswer(){
+ $('form').on('click','label', function(){
+  $('label').addClass('checked')
+ })
+    
 }
 
 function handleNext(){
@@ -110,7 +143,6 @@ function handleNext(){
       e.preventDefault();
       if(currentQuestionNum < QUIZ.length - 1 ){
         currentQuestionNum++;
-        // console.log(currentQuestionNum)
         renderQuestionCard();
       }else{
         renderSummaryScreen();
@@ -126,7 +158,10 @@ $(".container").on("click", "#tryagain", function(){
 })
 }
 
+
+
 function init(){
+  handleClickAnswer()
   handleQuiz();
   handleSubmitAnswer();
   handleNext();

@@ -4,39 +4,71 @@
   body, html{
     font-family: 'Noto Sans HK', sans-serif;
     height: 100%;
+    color: whitesmoke;
+    /* background: linear-gradient(orange 55%, black 45%); */
+    background: rgb(39,35,42);
+    background: linear-gradient(90deg, rgba(39,35,42,1) 32%, rgba(205,96,8,0.9392799356070554) 95%, rgba(181,163,137,0.8300362381280637) 100%);
+    margin: 0;
+    font-size: 15px;
   }
   .container{
     display: block;
     position: relative;
-    margin: 40px auto;
-    height: auto;
+    margin: 0 auto;
+    height: 100%;
     width: 500px;
-    padding: 20px;
+    padding: 5px 10px 10px 10px;
   }
+  
   h2 {
       color: #C97B33;
   }
-  h3 {
-    color: red;
-  }
+ 
   main{
+    width: auto;
+    height: 500px;
     padding: 40px;
-    border: 6px #F4D03F solid;
     border-radius: 5px;
   }
  
   fieldset {
-    width: 100%;
+    width: 50%;
+    height: 50%;
     border: none;
   }
-  input[type="radio"] span{
-    line-height: 8em;
+  /*hide the browser default radio buttons*/
+  input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
   }
-  label{
+  /* customize the label */
+label{
+    color: black;
+    background-color: orange;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
     display: block;
-    margin-bottom: 30px;
+    margin: 0 auto;
+    margin-bottom: 12px;
+    border: solid 1px black;
+    cursor: pointer;
+    border-radius: 3px;
   }
-  
+label
+  input[type="radio"] span{
+    line-height: 7em;
+   
+  }
+  label span{
+    font-weight: 600;
+    font-size: 14px;
+    
+  }
+  /*button styles*/
   button{
     background: #DCEEDE;
     width: 160px;
@@ -51,9 +83,20 @@
 input,button:hover{
   cursor: pointer;
 }
+.selected{
+  background-color: #F4D03F
+}
 .green{
   color: green;
 }
-
+.red{
+  color: red;
+}
+.selectError{
+  color: red;
+}
+.checked{
+  background-color: aqua
+}
 
 
