@@ -27,22 +27,22 @@ function generateQuestionCard(card){
             <h1>${card.question}</h1>
           <span class='tiger__image'><img src=${generateRandomImage()} alt='tiger pic' width='auto' height='250'/></span>
           <label>
-            <input type="radio" value="${card.answers[0]}" name="selector" required>
+            <input id='ans' type="radio" value="${card.answers[0]}" name="selector" required>
             <span>${card.answers[0]}</span>
          </label>
          
          <label> 
-          <input type="radio" value="${card.answers[1]}" name="selector" required>
+          <input id='ans2' type="radio" value="${card.answers[1]}" name="selector" required>
           <span>${card.answers[1]}</span>
        </label>
        
         <label>  
-        <input type="radio" value="${card.answers[2]}" name="selector" required>
+        <input id='ans3' type="radio" value="${card.answers[2]}" name="selector" required>
         <span>${card.answers[2]}</span>
      </label>
    
     <label>
-      <input type="radio" value="${card.answers[3]}" name="selector" required>
+      <input id='ans4' type="radio" value="${card.answers[3]}" name="selector" required>
       <span>${card.answers[3]}</span>
    </label>
    
@@ -132,9 +132,15 @@ function handleSubmitAnswer(){
     
 }
 function handleClickAnswer(){
- $('form').on('click','label', function(){
-  $('label').addClass('checked')
- })
+ $('.container').on('click','label', function(e){
+   e.stopPropagation();
+   
+     
+      $('input[name="selector"]:checked').parent().toggleClass('checked');
+     
+     
+   
+})
     
 }
 

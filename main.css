@@ -23,7 +23,9 @@
   h2 {
       color: #C97B33;
   }
- 
+ p{
+   line-height: 1.4em;
+ }
   main{
     width: auto;
     height: 500px;
@@ -61,7 +63,10 @@ label{
 label
   input[type="radio"] span{
     line-height: 7em;
-   
+    transition: all 1s ease-in;
+  }
+  label:hover{
+    background-color: orangered;
   }
   label span{
     font-weight: 600;
@@ -96,7 +101,10 @@ input,button:hover{
   color: red;
 }
 .checked{
-  background-color: aqua
+  background-color: orangered;
+  opacity: 1.8;
+  
 }
+
 
 
